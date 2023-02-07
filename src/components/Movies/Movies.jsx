@@ -7,7 +7,8 @@ import MoviesList from 'pages/MoviesList';
 const Movies = ({ onSubmitHanler, movies }) => {
   const [inputValue, setInputValue] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
-  // const queryName = searchParams.get('query') ?? '';
+  // eslint-disable-next-line no-unused-vars
+  const queryName = searchParams.get('query') ?? '';
 
   const updateQueryString = query => {
     const nextParams = query !== '' ? { query } : {};
@@ -24,7 +25,6 @@ const Movies = ({ onSubmitHanler, movies }) => {
     updateQueryString(inputValue);
     setInputValue('');
   };
-  // console.log(queryName);
   return (
     <>
       <form onSubmit={onSubmit}>
