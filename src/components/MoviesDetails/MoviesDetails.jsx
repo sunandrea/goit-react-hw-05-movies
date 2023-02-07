@@ -11,7 +11,8 @@ const MoviesDetails = ({ onCast, onReviews }) => {
     getMovieById(id).then(res => setMovie({ ...res.data }));
     getMovieCast(id).then(res => onCast(res.data.cast));
     getMovieReviews(id).then(res => onReviews(res.data.results));
-  }, [id, onCast, onReviews]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
   return (
     <div>
       <Link to="/"> Go back</Link>
