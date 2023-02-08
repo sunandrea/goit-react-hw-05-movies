@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, Outlet } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -24,15 +24,21 @@ const MoreInfoLink = styled(NavLink)`
 const MoviesDetails = ({ onCast, onReviews }) => {
   const [movie, setMovie] = useState({});
   const { id } = useParams();
+  const location = useLocation();
+
   useEffect(() => {
     getMovieById(id).then(res => setMovie({ ...res.data }));
     getMovieCast(id).then(res => onCast(res.data.cast));
     getMovieReviews(id).then(res => onReviews(res.data.results));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
+
   return (
     <div>
-      <Link className={css.goBackLink} to="/">
+      <Link
+        className={css.goBackLink}
+        to={{ pathname: location.state.from === '/' ? '/' : '/movies' }}
+      >
         Go back
       </Link>
       <div className={css.contentWrapper}>

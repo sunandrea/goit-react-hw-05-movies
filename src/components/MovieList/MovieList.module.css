@@ -4,12 +4,34 @@
 
 .list {
   list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+  padding-right: 40px;
 }
 
 .listItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   color: navy;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-
+.listItem:hover,
+.listItem:focus {
+  transform: scale(1.1);
+  cursor: pointer;
+}
 .listLink {
   text-decoration: none;
+}
+
+.listImg {
+  padding-top: 10px;
+  max-width: 200px;
+}
+
+.movieTittle {
+  text-align: center;
 }

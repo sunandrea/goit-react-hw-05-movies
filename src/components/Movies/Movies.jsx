@@ -6,11 +6,10 @@ import MoviesList from 'components/MovieList/MoviesList';
 
 const Movies = ({ onSubmitHanler, movies }) => {
   const [inputValue, setInputValue] = useState('');
-  const [searchParams, setSearchParams] = useSearchParams();
   // eslint-disable-next-line no-unused-vars
-  const queryName = searchParams.get('query') ?? '';
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const updateQueryString = query => {
+  const updateQueryString = (query, value) => {
     const nextParams = query !== '' ? { query } : {};
     setSearchParams(nextParams);
   };
@@ -22,9 +21,11 @@ const Movies = ({ onSubmitHanler, movies }) => {
   const onSubmit = evt => {
     evt.preventDefault();
     onSubmitHanler(inputValue);
-    updateQueryString(inputValue);
+    updateQueryString(inputValue, `query`);
+
     setInputValue('');
   };
+
   return (
     <>
       <form onSubmit={onSubmit}>

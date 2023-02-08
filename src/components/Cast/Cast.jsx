@@ -1,21 +1,23 @@
 import PropTypes from 'prop-types';
+import css from './Cast.module.css';
+
 const Cast = ({ cast }) => {
   return (
-    <ul>
+    <ul className={css.castList}>
       {cast.length > 1 ? (
         cast.map(actor => {
           return (
-            <li key={actor.cast_id}>
+            <li className={css.castItem} key={actor.cast_id}>
               <img
                 src={
                   actor.profile_path &&
                   `https://image.tmdb.org/t/p/w500/` + actor.profile_path
                 }
-                width="100px"
-                height="100px"
+                width="200px"
+                height="240px"
                 alt={actor.name}
               />
-              <p>{actor.name}</p>
+              <p className={css.avc}>{actor.name}</p>
               <p>Character: {actor.character}</p>
             </li>
           );
