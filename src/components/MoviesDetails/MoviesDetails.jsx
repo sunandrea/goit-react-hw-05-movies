@@ -1,9 +1,26 @@
 import { useEffect, useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import { getMovieById, getMovieCast, getMovieReviews } from 'Api/getMovies';
+import css from './MoviesDetails.module.css';
+
+const MoreInfoLink = styled(NavLink)`
+  text-decoration: none;
+  color: #120b3d;
+  font-weight: 500;
+  list-style: none;
+
+  &.active {
+    color: #a70960;
+  }
+  &:hover {
+    color: #a70960;
+  }
+`;
+
 const MoviesDetails = ({ onCast, onReviews }) => {
   const [movie, setMovie] = useState({});
   const { id } = useParams();
@@ -15,33 +32,43 @@ const MoviesDetails = ({ onCast, onReviews }) => {
   }, [id]);
   return (
     <div>
-      <Link to="/"> Go back</Link>
-      <div>
+      <Link className={css.goBackLink} to="/">
+        Go back
+      </Link>
+      <div className={css.contentWrapper}>
         <img
-          src={movie.backdrop_path}
+          className={css.posterImg}
+          src={
+            movie.poster_path &&
+            `https://image.tmdb.org/t/p/w500/` + movie.poster_path
+          }
           width="100px"
           height="100px"
           alt={movie.title}
         />
-        <div>
+        <div className={css.detailsWrapper}>
           <h1>{movie.title}</h1>
-          <p>User Score: {movie.vote_average}</p>
+          <p>User Score: {Math.ceil(movie.vote_average * 10)}%</p>
           <h2>Overview</h2>
           <p>{movie.overview}</p>
           <h3>Genres</h3>
-          <div>
+          <ul className={css.genresList}>
             {movie.genres &&
-              movie.genres.map(el => <p key={el.id}>{el.name}</p>)}
-          </div>
+              movie.genres.map(el => (
+                <li className={css.genresList} key={el.id}>
+                  {el.name}
+                </li>
+              ))}
+          </ul>
           <p></p>
         </div>
       </div>
-      <ul>
+      <ul className={css.linkList}>
         <li>
-          <Link to="cast">Cast</Link>
+          <MoreInfoLink to="cast">Cast</MoreInfoLink>
         </li>
         <li>
-          <Link to="reviews">Reviews</Link>
+          <MoreInfoLink to="reviews">Reviews</MoreInfoLink>
         </li>
       </ul>
       <Outlet />

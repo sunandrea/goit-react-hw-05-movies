@@ -1,0 +1,42 @@
+.posterImg {
+  margin-left: 20px;
+  width: 250px;
+  height: 320px;
+}
+
+.contentWrapper {
+  display: flex;
+}
+
+.detailsWrapper {
+  margin-left: 40px;
+}
+
+.goBackLink {
+  text-decoration: none;
+  display: inline-block;
+  padding: 5px;
+  margin: 5px 5px 5px 20px;
+  color: rgb(36, 34, 34);
+}
+.goBackLink:hover,
+.goBackLink:focus {
+  color: #a70960;
+
+  outline: 1px solid;
+}
+
+.genresList {
+  text-decoration: none;
+  list-style: none;
+  display: flex;
+  padding-left: 0;
+}
+
+.genresList:not(:first-child) {
+  margin-left: 5px;
+}
+
+.linkList {
+  list-style: none;
+}

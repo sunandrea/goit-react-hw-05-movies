@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
 
-import MovieListItem from 'components/MovieListItem/MovieListItem';
+import MovieListItem from 'components/MovieList/MovieListItem';
+import css from './MovieList.module.css';
 const MoviesList = ({ title, list }) => {
   return (
     <>
-      <h2>{title}</h2>
+      <h2 className={css.title}>{title}</h2>
       {list && (
-        <ul>
+        <ul className={css.list}>
           {list.map(movie => (
             <MovieListItem key={movie.id} id={movie.id} movie={movie} />
           ))}

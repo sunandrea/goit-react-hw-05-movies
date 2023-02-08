@@ -1,0 +1,15 @@
+.title {
+  text-align: center;
+}
+
+.list {
+  list-style: none;
+}
+
+.listItem {
+  color: navy;
+}
+
+.listLink {
+  text-decoration: none;
+}

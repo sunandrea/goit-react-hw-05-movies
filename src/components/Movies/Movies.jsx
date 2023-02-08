@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import MoviesList from 'pages/MoviesList';
+import MoviesList from 'components/MovieList/MoviesList';
 
 const Movies = ({ onSubmitHanler, movies }) => {
   const [inputValue, setInputValue] = useState('');
