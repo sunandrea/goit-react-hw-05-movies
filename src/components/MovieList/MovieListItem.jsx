@@ -24,15 +24,6 @@ const MovieListItem = ({ id, movie }) => {
 
   return (
     <li className={css.listItem}>
-      <img
-        className={css.listImg}
-        src={
-          movie.poster_path &&
-          `https://image.tmdb.org/t/p/w500/` + movie.poster_path
-        }
-        alt={movie.title}
-        height="280px"
-      />
       <ItemLink
         className={css.listLink}
         to={{
@@ -40,6 +31,16 @@ const MovieListItem = ({ id, movie }) => {
         }}
         state={{ from: location.pathname }}
       >
+        <img
+          className={css.listImg}
+          src={
+            movie.poster_path &&
+            `https://image.tmdb.org/t/p/w500/` + movie.poster_path
+          }
+          alt={movie.title}
+          height="280px"
+        />
+
         <h2 className={css.movieTittle}>{movie.title}</h2>
       </ItemLink>
     </li>

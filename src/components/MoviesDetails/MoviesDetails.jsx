@@ -23,21 +23,31 @@ const MoreInfoLink = styled(NavLink)`
 
 const MoviesDetails = ({ onCast, onReviews }) => {
   const [movie, setMovie] = useState({});
+  const [fromPage, setFromPage] = useState(null);
   const { id } = useParams();
   const location = useLocation();
 
+  // if (location.state && location.state.from) {
+  //   setFromPage({ previousPage: location.state.from });
+  // }
+  // console.log(`fromPage`, fromPage);
   useEffect(() => {
     getMovieById(id).then(res => setMovie({ ...res.data }));
     getMovieCast(id).then(res => onCast(res.data.cast));
     getMovieReviews(id).then(res => onReviews(res.data.results));
+    if (location.state && location.state.from) {
+      setFromPage(location.state.from);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+  }, [id, location]);
 
   return (
     <div>
       <Link
         className={css.goBackLink}
-        to={{ pathname: location.state.from === '/' ? '/' : '/movies' }}
+        to={{
+          pathname: fromPage || '/',
+        }}
       >
         Go back
       </Link>
