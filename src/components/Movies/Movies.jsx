@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import MoviesList from 'components/MovieList/MoviesList';
+import css from './Movies.module.css';
 
 const Movies = ({ onSubmitHanler, movies }) => {
   const [inputValue, setInputValue] = useState('');
@@ -28,9 +29,15 @@ const Movies = ({ onSubmitHanler, movies }) => {
 
   return (
     <>
-      <form onSubmit={onSubmit}>
-        <input onChange={onChange} value={inputValue}></input>
-        <button type="submit">Search</button>
+      <form className={css.form} onSubmit={onSubmit}>
+        <input
+          className={css.input}
+          onChange={onChange}
+          value={inputValue}
+        ></input>
+        <button className={css.button} type="submit">
+          Search
+        </button>
       </form>
       <MoviesList list={movies} />
     </>
